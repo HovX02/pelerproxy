@@ -1,0 +1,35 @@
+# PelerProxy Bot — Configuration
+# Copy this file to config.toml and fill in your values.
+# config.toml is gitignored — never commit it.
+
+[bot]
+token = "YOUR_BOT_TOKEN_HERE"
+
+[admin]
+ids = [123456789]
+
+[captcha.azcaptcha]
+api_key = ""
+
+[captcha.2captcha]
+api_key = ""
+
+[captcha]
+default_provider = "2captcha"
+
+[webshare]
+fixed_password = "Pasardigital#26"
+recaptcha_sitekey = "6LeHZ6UUAAAAAKat_YS--O2tj_by3gv3r_l03j9d"
+register_url = "https://proxy.webshare.io/register"
+api_base = "https://proxy.webshare.io/api/v2"
+
+[proxy]
+mode_default = true
+check_timeout = 15
+check_url = "http://httpbin.org/ip"
+max_retries = 5
+
+[limits]
+max_registrations_per_day = 1
+max_proxies_per_fetch = 10
+max_accounts_kept = 20

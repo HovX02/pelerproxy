@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environment
+venv/
+
+# Database
+data/
+
+# Proxy logs (user data)
+proxies.txt
+
+# Config (contains secrets)
+config.toml
+
+# IDE
+.vscode/
+.idea/
+
+# Backup files
+*.bak
+*.json.bak
