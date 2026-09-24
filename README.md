@@ -50,6 +50,8 @@ utils/
 
 ## 🚀 Quick Start
 
+### Running Locally
+
 ```bash
 # 1. Clone
 git clone https://github.com/hirotomasato/pelerproxy.git
@@ -69,6 +71,28 @@ cp config.example.toml config.toml
 
 # 5. Run
 python bot.py
+```
+
+### 🐳 Running with Docker
+
+```bash
+# 1. Prepare configuration
+cp config.example.toml config.toml
+# Edit config.toml with your bot token and admin IDs
+
+# 2. Run with Docker Compose
+docker compose up -d
+```
+
+Or using Docker directly:
+
+```bash
+docker build -t pelerproxy .
+docker run -d \
+  --name pelerproxy-bot \
+  -v $(pwd)/config.toml:/app/config.toml:ro \
+  -v $(pwd)/data:/app/data \
+  pelerproxy
 ```
 
 ## ⚙️ Configuration
