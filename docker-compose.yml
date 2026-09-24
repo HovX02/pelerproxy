@@ -3,6 +3,14 @@ services:
     build: .
     container_name: pelerproxy-bot
     restart: unless-stopped
+    # Environment variables can be configured here or in an .env file
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN:-}
+      - ADMIN_IDS=${ADMIN_IDS:-}
+      - AZCAPTCHA_API_KEY=${AZCAPTCHA_API_KEY:-}
+      - TWOCAPTCHA_API_KEY=${TWOCAPTCHA_API_KEY:-}
+      - CAPTCHA_DEFAULT_PROVIDER=${CAPTCHA_DEFAULT_PROVIDER:-2captcha}
     volumes:
+      # Mount config.toml if you choose to use config.toml instead of environment variables
       - ./config.toml:/app/config.toml:ro
       - ./data:/app/data
