@@ -75,6 +75,28 @@ python bot.py
 
 ### 🐳 Running with Docker
 
+You can configure the bot using environment variables or a `config.toml` file.
+
+**Option A: Using Environment Variables**
+
+```bash
+docker run -d \
+  --name pelerproxy-bot \
+  -e BOT_TOKEN="your_bot_token" \
+  -e ADMIN_IDS="123456789" \
+  -e TWOCAPTCHA_API_KEY="your_api_key" \
+  -v $(pwd)/data:/app/data \
+  pelerproxy
+```
+
+Or using Docker Compose with an `.env` file or environment variables:
+
+```bash
+BOT_TOKEN="your_token" ADMIN_IDS="123456789" docker compose up -d
+```
+
+**Option B: Using `config.toml`**
+
 ```bash
 # 1. Prepare configuration
 cp config.example.toml config.toml
@@ -84,29 +106,18 @@ cp config.example.toml config.toml
 docker compose up -d
 ```
 
-Or using Docker directly:
-
-```bash
-docker build -t pelerproxy .
-docker run -d \
-  --name pelerproxy-bot \
-  -v $(pwd)/config.toml:/app/config.toml:ro \
-  -v $(pwd)/data:/app/data \
-  pelerproxy
-```
-
 ## ⚙️ Configuration
 
-Edit `config.toml` after copying from `config.example.toml`:
+Settings can be set via Environment Variables or in `config.toml` (environment variables take precedence):
 
-| Section | Key | Description |
-|---------|-----|-------------|
-| `[bot]` | `token` | Telegram bot token from [@BotFather](https://t.me/botfather) |
-| `[admin]` | `ids` | List of admin Telegram user IDs |
-| `[captcha.azcaptcha]` | `api_key` | AZCaptcha API key (or set via admin panel) |
-| `[captcha.2captcha]` | `api_key` | 2Captcha API key |
-| `[captcha]` | `default_provider` | `"azcaptcha"` or `"2captcha"` |
-| `[limits]` | `max_registrations_per_day` | Daily limit per user (default: 1) |
+| Environment Variable | TOML `[section] key` | Description | Default |
+|----------------------|----------------------|-------------|---------|
+| `BOT_TOKEN` | `[bot] token` | Telegram bot token from [@BotFather](https://t.me/botfather) | *Required* |
+| `ADMIN_IDS` | `[admin] ids` | Comma-separated admin Telegram IDs (e.g. `123,456`) | `[]` |
+| `AZCAPTCHA_API_KEY` | `[captcha.azcaptcha] api_key` | AZCaptcha API key | `""` |
+| `TWOCAPTCHA_API_KEY` | `[captcha.2captcha] api_key` | 2Captcha API key | `""` |
+| `CAPTCHA_DEFAULT_PROVIDER` | `[captcha] default_provider` | Default captcha provider (`azcaptcha` / `2captcha`) | `"2captcha"` |
+| `MAX_REGISTRATIONS_PER_DAY` | `[limits] max_registrations_per_day` | Daily limit per user | `1` |
 
 ## 🤖 Commands
 
